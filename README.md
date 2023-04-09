@@ -9,4 +9,4 @@ Hey there! With this you can run custom js inside your flutter app.
 
 ## Screenshot
 - This is just a starter template , press restart it will fetch the Hello World! from helloWorld() function in the backend
-![untitled](https://user-images.githubusercontent.com/62092256/230760675-834886a6-0537-439d-a391-b35cfb3ab92a.gif)
+<img src="https://user-images.githubusercontent.com/62092256/230760675-834886a6-0537-439d-a391-b35cfb3ab92a.gif" alt="untitled" width="300"/>
