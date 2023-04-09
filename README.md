@@ -1,16 +1,12 @@
-# minimal_js_api
+# Flutter Minimal JS
+Hey there! With this you can run custom js inside your flutter app. 
+- Clone the repository
+- go to /lib/js folder
+- add your code to index.ts or create more X.ts file
+- import those in index.ts
+- run ``` yarn build ``` in /lib/js
+- now just create an instance of JsApiService and run your custom JS inside your flutter app
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshot
+- This is just a starter template , press restart it will fetch the Hello World! from helloWorld() function in the backend
+![untitled](https://user-images.githubusercontent.com/62092256/230760675-834886a6-0537-439d-a391-b35cfb3ab92a.gif)
