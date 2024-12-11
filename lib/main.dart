@@ -75,7 +75,6 @@ class _HomePageState extends State<HomePage> {
       body:  isControllerInit?WebViewWidget(controller: controller):Text("not init"),
       floatingActionButton: FloatingActionButton(
         onPressed: () async{
-          controller.runJavaScript('Toaster.postMessage("User Agent: " + navigator.userAgent);',);
           controller.runJavaScript('changeContent();');
         },
         child: Text("click me"),

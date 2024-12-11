@@ -5,24 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
     <script>
-        // JavaScript function to show an alert
         function showAlert(message) {
             alert(message);
         }
 
-        // JavaScript function to return a greeting message
         function getGreeting(name) {
             return `Hello, ${name}! Welcome to the WebView.`;
         }
 
-        // JavaScript function to change the content of a specific element
         function changeContent() {
-            document.getElementById('content').innerText = 'Content changed by JavaScript!';
+            document.getElementById('content').innerText = parseInt(document.getElementById('content').innerText)+1;
         }
     </script>
 </head>
 <body>
-    <h1>Welcome to the WebView Example</h1>
-    <div id="content">This is the original content.</div>
+    <div>COUNT:</div>
+    <div id="content">1</div>
 </body>
 </html>
