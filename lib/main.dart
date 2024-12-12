@@ -35,7 +35,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     rootBundle.loadString('lib/js/dist/index.js').then((val) {
-      print("val===${val}");
       controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
         ..setNavigationDelegate(
@@ -46,11 +45,17 @@ class _HomePageState extends State<HomePage> {
             onPageStarted: (String url) {
               print("Page started loading: $url");
             },
-            onPageFinished: (String url) {
+            onPageFinished: (String url) async{
               print("Page finished loading: $url");
               setState(() {
                 isControllerInit = true;
               });
+              try {
+              var res = await controller.runJavaScriptReturningResult('helloWorld();');
+          print("res===$res");
+              } catch (e) {
+                print("error===$e");
+              }
             },
             onHttpError: (HttpResponseError error) {
               print("HTTP error: ${error}");
@@ -66,8 +71,9 @@ class _HomePageState extends State<HomePage> {
     </script>
 """)
         ..addJavaScriptChannel(
-          'Toaster',
+          'flutterJs',
           onMessageReceived: (JavaScriptMessage message) {
+            print("RECEIVED IN CHANNEL: ${message.message}");
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(message.message)),
             );
@@ -85,8 +91,8 @@ class _HomePageState extends State<HomePage> {
           : Text("not init"),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          var res = await controller.runJavaScriptReturningResult('helloWorld();');
-          print("res===$res");
+          await controller.runJavaScript('flutterJs.postMessage("User Agent: " + navigator.userAgent);');
+          // print("res===$res");
         },
         child: Text("click me"),
       ),
