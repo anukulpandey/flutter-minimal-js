@@ -34,11 +34,12 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    rootBundle.loadString('lib/js/dist/index.js').then((val) {
+      print("val===${val}");
       controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
         ..setNavigationDelegate(
           NavigationDelegate(
-            
             onProgress: (int progress) {
               print("Progress: $progress%");
             },
@@ -58,24 +59,34 @@ class _HomePageState extends State<HomePage> {
               print("Web resource error: ${error.description}");
             },
           ),
-        )..loadFlutterAsset("lib/js/dist/index.html")..addJavaScriptChannel(
-        'Toaster',
-        onMessageReceived: (JavaScriptMessage message) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(message.message)),
-          );
-        },
-      );
+        )
+        ..loadHtmlString("""
+    <script type="text/javascript">
+        $val
+    </script>
+""")
+        ..addJavaScriptChannel(
+          'Toaster',
+          onMessageReceived: (JavaScriptMessage message) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(message.message)),
+            );
+          },
+        );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter WebView Example')),
-      body:  isControllerInit?WebViewWidget(controller: controller):Text("not init"),
+      body: isControllerInit
+          ? WebViewWidget(controller: controller)
+          : Text("not init"),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async{
-          controller.runJavaScript('changeContent();');
+        onPressed: () async {
+          var res = await controller.runJavaScriptReturningResult('helloWorld();');
+          print("res===$res");
         },
         child: Text("click me"),
       ),
