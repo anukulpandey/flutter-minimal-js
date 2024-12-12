@@ -10,7 +10,7 @@ class JsApiService {
   void onWebViewCreated(WebViewController webViewController) async {
     controller.complete(webViewController);
     String fileJsContents = await rootBundle.loadString('lib/js/dist/index.js');
-    webViewController.loadUrl(Uri.dataFromString("""
+    webViewController.loadHtmlString(Uri.dataFromString("""
         <script type="text/javascript">
             $fileJsContents
         </script>
@@ -19,7 +19,7 @@ class JsApiService {
 
   void executeJsFunc(String jsFunc){
     controller.future.then((controller) {
-      controller.runJavascriptReturningResult(jsFunc).then((value) => print(value));   
+      controller.runJavaScriptReturningResult(jsFunc).then((value) => print(value));   
     });
   }
 }

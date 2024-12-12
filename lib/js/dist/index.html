@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script>
+        function showAlert(message) {
+            alert(message);
+        }
+
+        function getGreeting(name) {
+            return `Hello, ${name}! Welcome to the WebView.`;
+        }
+
+        function changeContent() {
+            document.getElementById('content').innerText = parseInt(document.getElementById('content').innerText)+1;
+        }
+    </script>
+</head>
+<body>
+    <div>COUNT:</div>
+    <div id="content">1</div>
+</body>
+</html>
